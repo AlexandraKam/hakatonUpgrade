@@ -1,0 +1,4 @@
+opencv-python==4.9.0.80
+matplotlib==3.8.4
+stitching==0.5.3
+celery==5.3.6
