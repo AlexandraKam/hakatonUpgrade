@@ -1,3 +1,14 @@
+body {
+  padding-top: 65px;
+  padding-bottom: 20px;
+  min-height: 100%;
+  background: #FEFEFE;
+  position: relative;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  background-image: url("../public/image/main.jpg");
+}
+
 .App {
   text-align: center;
 }
@@ -43,5 +54,14 @@
   text-transform: uppercase;
   font-weight: 500;
   margin: 14px 0 5px 25px;
+}
+
+input[type='radio'],
+input[type='submit'],
+button,
+.conf-step__header,
+select {
+  cursor: pointer;
+  background-image: none
 }
 
