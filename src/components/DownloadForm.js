@@ -8,7 +8,7 @@ function DownloadForm() {
     const [files, setFiles] = useState({ fileLeft: null, fileRight: null });
 
     const onFileChange = (file, name) => {
-        let newFiles = files;
+        let newFiles = {...files};
         if (name === "photoLeft") {
             newFiles.fileLeft = file;
             setFiles(newFiles);
@@ -41,6 +41,7 @@ function DownloadForm() {
         )
             .then(res => {
                 console.log(`Success` + res.data);
+                setFiles({ fileLeft: null, fileRight: null });
             })
             .catch(err => {
                 console.log(err);
@@ -51,54 +52,73 @@ function DownloadForm() {
         axios.post("api/uploadfile", formData);
     }
 
-    // const fileData = () => {
-    //     if (files.fileLeft) {
-    //         return (
-    //             <div>
-    //                 <h2>File Details:</h2>
-    //                 <p>
-    //                     File Name:{" "}
-    //                     {files.fileLeft.name}
-    //                 </p>
+    const fileData = (files) => {
+        if (files.fileLeft || files.fileRight) {
+            return (
+                <div>
+                    <h2>Детали:</h2>
+                    {files.fileLeft &&
+                        <div className="file-details">
+                            <h4>Левый файл:</h4>
+                            <p>
+                                Имя файла:{" "}
+                                {files.fileLeft.name}
+                            </p>
+                            <p>
+                                Тип файла:{" "}
+                                {files.fileLeft.type}
+                            </p>
+                        </div>
+                    }
+                    {files.fileRight &&
+                        <div className="file-details">
+                            <h4>Правый файл:</h4>
+                            <p>
+                                Имя файла:{" "}
+                                {files.fileRight.name}
+                            </p>
+                            <p>
+                                Тип файла:{" "}
+                                {files.fileRight.type}
+                            </p>
+                        </div>
+                    }
 
-    //                 <p>
-    //                     File Type:{" "}
-    //                     {files.fileLeft.type}
-    //                 </p>
-    //             </div>
-    //         );
-    //     } else {
-    //         return (
-    //             <div>
-    //                 <br />
-    //                 <h4>
-    //                     Choose before Pressing the Upload
-    //                     button
-    //                 </h4>
-    //             </div>
-    //         );
-    //     }
-    // }
+
+
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <br />
+                    <h4>
+                        Выберите файлы прежде, чем нажимать кнопку "Загрузить"
+                    </h4>
+                </div>
+            );
+        }
+    }
 
 
     return (
         <div className="main-content">
-            <h1>Загрузка файлов</h1>
+            <h2>Загрузка файлов</h2>
             {/* <input id="field-one" type="file" class="field" placeholder="Выберите файл" required=""></input> */}
             {/* <label className="conf-step__label conf-step__label-fullsize" htmlFor="name">
                 <input className="conf-step__input" type="file" placeholder="Выберите файл" name="photo" onChange={e => setData('poster', e.target.files[0])} multiple accept="image/*,image/jpeg"/>
             </label> */}
             <form onSubmit={handleSubmit}>
                 <label className="conf-step__label conf-step__label-fullsize" htmlFor="name">
-                    <h3>Слева</h3>
+                    <h3>Левая сторона</h3>
                     <input className="conf-step__input" type="file" placeholder="Выберите файл" name="photoLeft" accept="image/*,image/jpeg" onChange={(e) => onFileChange(e.target.files[0], e.target.name)} />
                 </label>
                 <label className="conf-step__label conf-step__label-fullsize" htmlFor="name">
-                    <h3>Справа</h3>
+                    <h3>Правая сторона</h3>
                     <input className="conf-step__input" type="file" placeholder="Выберите файл" name="photoRight" accept="image/*,image/jpeg" onChange={(e) => onFileChange(e.target.files[0], e.target.name)} />
                 </label>
-                <input type="submit" value="Отправить файлы" className="download-button" />
-                {/* {fileData()} */}
+                <input type="submit" value="Загрузить" className="download-button" />
+                {fileData(files)}
             </form>
         </div>
     );
