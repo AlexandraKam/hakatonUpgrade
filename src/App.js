@@ -26,17 +26,17 @@ function App() {
         <h1>Загрузить несколько соседних фотографий и получить один панорамный снимок</h1>
         <p>Наш модуль бесшовной склейки изображений поможет вам получить из нескольких фоторафий один панорамный снимок,
            что поможет экономить время работы системы по распознаванию уникальных товаров по ряду показателей (память, время на обработку мониторинга)</p>
-        <p className="conf-step__paragraph">Выберите действие:</p>
+        {/* <p className="conf-step__paragraph">Выберите действие:</p> */}
         <ul className="conf-step__list">
           <li >
             <button className="conf-step__button" onClick={() => openModal('download')}>Загрузка файлов</button>
           </li>
-          <li >
+          {/* <li >
             <button className="conf-step__button" onClick={() => openModal('receiving')}>Получение файлов</button>
-          </li>
+          </li> */}
         </ul>
         {modalIsOpen === 'download' && <DownloadForm />}
-        {modalIsOpen === 'receiving' && <ReceivingFile />}
+        {/* {modalIsOpen === 'receiving' && <ReceivingFile />} */}
       </div>
     </div>
   );
