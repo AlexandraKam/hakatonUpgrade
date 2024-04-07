@@ -2,15 +2,12 @@ body {
   padding-top: 65px;
   padding-bottom: 20px;
   min-height: 100%;
-  background: #464444;
-  position: relative;
   font-family: Roboto, Arial, sans-serif;
   font-size: 14px;
   color: #FEFEFE;
-  background-image: url("../public/image/main.jpg");
 }
 
-body::before {
+/* body::before {
   content: "";
   background-color: #000000;
   position: absolute;
@@ -19,7 +16,7 @@ body::before {
   right: 0;
   bottom: 0;
   opacity: 0.8;
-}
+} */
 
 .App {
   text-align: center;
@@ -55,6 +52,7 @@ body::before {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -77,3 +75,11 @@ select {
   background-image: none
 }
 
+.container {
+
+  background: #464444;
+  position: relative;
+  background-image: url("../public/image/main.jpg");
+  -webkit-background-size: cover;
+  background-size: cover;
+}

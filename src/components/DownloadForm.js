@@ -7,8 +7,10 @@ function DownloadForm() {
 
     const [files, setFiles] = useState({ fileLeft: null, fileRight: null });
 
+    const[result, setResult] = useState(null);
+
     const onFileChange = (file, name) => {
-        let newFiles = {...files};
+        let newFiles = { ...files };
         if (name === "photoLeft") {
             newFiles.fileLeft = file;
             setFiles(newFiles);
@@ -25,13 +27,12 @@ function DownloadForm() {
         const formData = new FormData();
 
         // Update the formData object
-        formData.append(
-            "myFile",
-            files
-        );
+        formData.append("image1", files.fileLeft);
+        formData.append("image2", files.fileLeft);
+
         console.log(e, files)
         axios.post(
-            "http://localhost:3000/upload",
+            "http://localhost:5000/api/process-images",
             formData,
             {
                 headers: {
@@ -40,8 +41,9 @@ function DownloadForm() {
             }
         )
             .then(res => {
-                console.log(`Success` + res.data);
+                console.log(`Success`, res);
                 setFiles({ fileLeft: null, fileRight: null });
+                setResult(res.data.stitched_image);
             })
             .catch(err => {
                 console.log(err);
@@ -49,7 +51,7 @@ function DownloadForm() {
 
         // Request made to the backend api
         // Send formData object
-        axios.post("api/uploadfile", formData);
+        // axios.post("api/uploadfile", formData);
     }
 
     const fileData = (files) => {
@@ -83,9 +85,6 @@ function DownloadForm() {
                             </p>
                         </div>
                     }
-
-
-
                 </div>
             );
         } else {
@@ -120,6 +119,12 @@ function DownloadForm() {
                 <input type="submit" value="Загрузить" className="download-button" />
                 {fileData(files)}
             </form>
+
+            {result &&
+                <>
+                    <h2>Рузультат</h2>
+                    <img src={`data:image/png;base64,${result}`} />
+                </>}
         </div>
     );
 }

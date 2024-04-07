@@ -14,7 +14,7 @@ CORS(app)
 def process_images(image1, image2, is_vertical_stitching):
     settings = {
         "detector": "sift", 
-        "confidence_threshold": 1e-6,
+        "confidence_threshold": 1e-8,
         "finder": "dp_color",
         "adjuster": "ray",
         "warper_type": "plane",
