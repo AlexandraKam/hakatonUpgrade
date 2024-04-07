@@ -29,7 +29,7 @@ function App() {
         {/* <p className="conf-step__paragraph">Выберите действие:</p> */}
         <ul className="conf-step__list">
           <li >
-            <button className="conf-step__button" onClick={() => openModal('download')}>Загрузка файлов</button>
+            <button className="conf-step__button" onClick={() => openModal('download')}>ЗАГРУЗКА ФАЙЛОВ</button>
           </li>
           {/* <li >
             <button className="conf-step__button" onClick={() => openModal('receiving')}>Получение файлов</button>
