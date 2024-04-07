@@ -5,6 +5,9 @@ body {
   font-family: Roboto, Arial, sans-serif;
   font-size: 14px;
   color: #FEFEFE;
+  background-image: url("../public/image/main.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 /* body::before {
@@ -76,12 +79,13 @@ select {
 }
 
 .container {
-
-  background: #464444;
   position: relative;
-  background-image: url("../public/image/main.jpg");
   -webkit-background-size: cover;
   background-size: cover;
+  width: 100%;
+
+
+
 }
 
 
@@ -92,6 +96,7 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: wheat;
 }
 
 .result-image {
@@ -103,4 +108,15 @@ select {
 .download-button, .checkbox {
   display: block;
   margin-top: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+h4 {
+  text-align: center;
+}
+.ttt{
+  margin: 0;
+  background-color: wheat;
 }

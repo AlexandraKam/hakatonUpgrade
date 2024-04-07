@@ -31,12 +31,8 @@ function App() {
           <li >
             <button className="conf-step__button" onClick={() => openModal('download')}>Загрузка файлов</button>
           </li>
-          <li >
-            <button className="conf-step__button" onClick={() => openModal('receiving')}>Получение файлов</button>
-          </li>
         </ul>
         {modalIsOpen === 'download' && <DownloadForm />}
-        {modalIsOpen === 'receiving' && <ReceivingFile />}
       </div>
     </div>
   );
