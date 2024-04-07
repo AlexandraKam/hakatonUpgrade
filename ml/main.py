@@ -13,7 +13,7 @@ CORS(app)
 
 def process_images(image1, image2, is_vertical_stitching):
     settings = {
-        "detector": "sift", 
+        "detector": "sift",
         "confidence_threshold": 1e-8,
         "finder": "dp_color",
         "adjuster": "ray",
@@ -37,7 +37,7 @@ def process_images(image1, image2, is_vertical_stitching):
     stitched_image = plot_image(panorama, is_vertical_stitching)
 
     # Загрузка модели YOLO
-    model = YOLO('ml/best.pt')
+    model = YOLO('best.pt')
 
     # Настройка параметров модели
     model.overrides['conf'] = 0.25  # Порог достоверности для NMS
@@ -77,8 +77,8 @@ def process_images_api():
     is_vertical_stitching = request.form.get('is_vertical_stitching') == 'true'
 
     # Преобразование изображений из бинарных данных в объекты OpenCV
-    image1 = cv2.imdecode(np.fromstring(image1, np.uint8), cv2.IMREAD_COLOR)
-    image2 = cv2.imdecode(np.fromstring(image2, np.uint8), cv2.IMREAD_COLOR)
+    image1 = cv2.imdecode(np.frombuffer(image1, np.uint8), cv2.IMREAD_COLOR)
+    image2 = cv2.imdecode(np.frombuffer(image2, np.uint8), cv2.IMREAD_COLOR)
 
     # Обработка изображений с учетом выбора чекбокса
     stitched_image_bytes, annotated_image_bytes = process_images(image1, image2, is_vertical_stitching)
