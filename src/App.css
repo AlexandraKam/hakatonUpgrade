@@ -99,3 +99,8 @@ select {
   max-height: 100%;
   object-fit: contain;
 }
+
+.download-button, .checkbox {
+  display: block;
+  margin-top: 20px;
+}
