@@ -120,3 +120,47 @@ h4 {
   margin: 0;
   background-color: wheat;
 }
+
+@media (min-width: 1200px) {
+  body {
+    background: #464444;
+    background-image: url("../public/image/main.jpg");
+    color: #faf6f6;
+  }
+
+  .conf-step__button, .download-button {
+    background-color: #a7080894;
+  }
+}
+
+.conf-step__button, .download-button {
+  background-color: #2A80B9;
+  color: #faf6f6;
+  /* font-size: 16px; */
+  text-transform: uppercase;
+  min-height: 50px;
+  line-height: 1.5;
+  height: auto;
+  text-align: center;
+  letter-spacing: 2px;
+  /* padding: 12px 30px; */
+  border-width: 1px;
+}
+
+@media (min-width: 1200px) {
+  body {
+    background: #464444;
+    background-image: url("../public/image/main.jpg");
+    color: #faf6f6;
+  }
+
+  .conf-step__button, .download-button {
+    background-color: #a7080894;
+  }
+}
+
+@media (max-width: 640px) {
+  .conf-step__button {
+    margin-left: 33px;
+  }
+}

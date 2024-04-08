@@ -93,7 +93,7 @@ const fileData = (files) => {
                 <div>
                     <br />
                     <h4>
-                        Выберите файлы прежде, чем нажимать кнопку "Загрузить"
+                        Выберите файлы прежде, чем нажимать кнопку "Обработать"
                     </h4>
                 </div>
             );
@@ -103,7 +103,6 @@ const fileData = (files) => {
 
     return (
         <div className="main-content">
-            <h2>Загрузка файлов</h2>
             <form onSubmit={handleSubmit}>
                 <label className="conf-step__label conf-step__label-fullsize" htmlFor="name">
                     <h3>1 фото</h3>
@@ -117,7 +116,7 @@ const fileData = (files) => {
                     <input className="checkbox" type="checkbox" onChange={(e) => onCheckboxChange(e)} checked={checked}/>
                     Отметить, если необходима вертикальная склейка
                 </label>
-                <input type="submit" value="Загрузить" className="download-button" />
+                <input type="submit" value="Обработать" className="download-button" />
                 {fileData(files)}
             </form>
 
