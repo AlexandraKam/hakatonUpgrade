@@ -6,8 +6,9 @@ import { useState } from "react";
 function DownloadForm() {
 
     const [files, setFiles] = useState({ fileLeft: null, fileRight: null });
-
-    const[result, setResult] = useState(null);
+    const [checked, setChecked] = useState(false);
+    const [result, setResult] = useState(null);
+    const [resultAnnotated, setResultAnnotated] = useState(null);
 
     const onFileChange = (file, name) => {
         let newFiles = { ...files };
@@ -21,6 +22,10 @@ function DownloadForm() {
         console.log(files)
     }
 
+    const onCheckboxChange = (e) => {
+        setChecked(e.target.checked);
+    }
+
     function handleSubmit(e) {
         e.preventDefault()
         // post('/images');
@@ -28,7 +33,8 @@ function DownloadForm() {
 
         // Update the formData object
         formData.append("image1", files.fileLeft);
-        formData.append("image2", files.fileLeft);
+        formData.append("image2", files.fileRight);
+        formData.append("is_vertical_stitching", checked);
 
         console.log(e, files)
         axios.post(
@@ -44,6 +50,7 @@ function DownloadForm() {
                 console.log(`Success`, res);
                 setFiles({ fileLeft: null, fileRight: null });
                 setResult(res.data.stitched_image);
+                setResultAnnotated(res.data.annotated_image);
             })
             .catch(err => {
                 console.log(err);
@@ -109,12 +116,16 @@ function DownloadForm() {
             </label> */}
             <form onSubmit={handleSubmit}>
                 <label className="conf-step__label conf-step__label-fullsize" htmlFor="name">
-                    <h3>Левая сторона</h3>
+                    <h3>Левая сторона (или верх)</h3>
                     <input className="conf-step__input" type="file" placeholder="Выберите файл" name="photoLeft" accept="image/*,image/jpeg" onChange={(e) => onFileChange(e.target.files[0], e.target.name)} />
                 </label>
                 <label className="conf-step__label conf-step__label-fullsize" htmlFor="name">
-                    <h3>Правая сторона</h3>
+                    <h3>Правая сторона (или низ)</h3>
                     <input className="conf-step__input" type="file" placeholder="Выберите файл" name="photoRight" accept="image/*,image/jpeg" onChange={(e) => onFileChange(e.target.files[0], e.target.name)} />
+                </label>
+                <label>
+                    <input className="checkbox" type="checkbox" onChange={(e) => onCheckboxChange(e)} checked={checked}/>
+                    Отметить, если порядок изображений вертикальный
                 </label>
                 <input type="submit" value="Загрузить" className="download-button" />
                 {fileData(files)}
@@ -124,6 +135,7 @@ function DownloadForm() {
                 <>
                     <h2>Рузультат</h2>
                     <img src={`data:image/png;base64,${result}`} />
+                    <img src={`data:image/png;base64,${resultAnnotated}`} />
                 </>}
         </div>
     );
